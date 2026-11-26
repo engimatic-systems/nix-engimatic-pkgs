@@ -29,8 +29,8 @@ These packages adapt upstream binaries; they do not compile the agents from
 source or install packages through npm.
 
 Codex retains its helpers, bundled tools, resources, and shell completions.
-Its checks verify the CLI version, helper startup, ripgrep, bubblewrap, bundled
-zsh, package metadata, and completions.
+Its checks verify the CLI version, helper startup, ripgrep, bubblewrap,
+package metadata, and completions.
 
 Pi preserves the complete standalone release under `libexec/pi`, including
 themes, HTML export assets, image WASM, documentation, examples, and its native

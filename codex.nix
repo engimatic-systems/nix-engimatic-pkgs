@@ -4,7 +4,6 @@
   fetchurl,
   autoPatchelfHook,
   installShellFiles,
-  ncurses,
   jq,
 }:
 
@@ -30,7 +29,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     autoPatchelfHook
     installShellFiles
   ];
-  buildInputs = [ ncurses ];
   nativeInstallCheckInputs = [ jq ];
 
   installPhase = ''
@@ -56,7 +54,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     "$out/bin/codex-code-mode-host" --help > /dev/null
     "$out/codex-path/rg" --version
     "$out/codex-resources/bwrap" --version
-    "$out/codex-resources/zsh/bin/zsh" -f -c 'test "$((6 * 7))" = 42'
 
     jq -e --arg version "${finalAttrs.version}" '
       .layoutVersion == 1 and .version == $version and

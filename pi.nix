@@ -4,7 +4,7 @@
   fetchurl,
   autoPatchelfHook,
   makeWrapper,
-  stdenv,
+  libxcb,
   bash,
   ripgrep,
   fd,
@@ -30,7 +30,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   dontStrip = true;
   strictDeps = true;
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
-  buildInputs = [ stdenv.cc.cc.lib ];
+  buildInputs = [ libxcb ];
   nativeInstallCheckInputs = [ jq nodejs ];
 
   installPhase = ''
@@ -61,9 +61,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     test -s "$out/libexec/pi/export-html/template.html"
     test -s "$out/libexec/pi/docs/extensions.md"
     test -d "$out/libexec/pi/examples"
-    # Exercise the native addon loader without needing a graphical clipboard.
+    # Check the X11 clipboard bindings without opening a display.
     node -e 'require(process.argv[1])' \
-      "$out/libexec/pi/node_modules/@mariozechner/clipboard/clipboard.linux-x64-gnu.node"
+      "$out/libexec/pi/native/linux/prebuilds/linux-x64/linux-platform-x11.node"
     runHook postInstall
   '';
 
